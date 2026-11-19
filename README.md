@@ -2,15 +2,24 @@
 
 11/19/2026
 
+Storage:
+
+
 Networking:
 
 Dont use the classic load balancer in AWS. Application Load Balancers are L7. In Elastic Load Balancers, you choose which VPC and AZ you want to send traffic to. Then, an LB node will be put in the subnet in that AZ that will load balance traffic. Cross-Zone Load Balancing allows LB Nodes to send traffic to backend pools regardless of what subnet and AZ the LB node is in. "Load Balancers in public subnets can forward requests to resources in private subnets." A listener listens for a specific field or piece of information. So basically it tells your LB what port to listen on and then you choose which target group to send it to. Then a target group is where you'll send the request (basically the associated backend pool compute). 
 
 You can use VPNs to connect to your on-prem resources. You have to deploy a VPN Gateway on the AWS side and a Customer Gateway on the on-prem side. The Customer Gateway and VPN Gateway will both have a public IP address so yuo can create an IPsec tunnel between the two. You can use dynamic routing protocols for the routing (BGP). 
 
-Direct Connect = ExpressRoute
+AWS Direct Connect = Azure ExpressRoute. AWS Privatelink = Azure Private Endpoint. AWS CloudFront = Azure Front Door or CDN. 
 
 With VPC Peering, you do have to add routes to the routing table to get to another VPC's subnets. They aren't automatically added to the routing table like with Azure peering. So you have to generate the peering request, accept it, putting the routing in both VPC's routing tables, and then you should have connectivity. 
+
+AWS CloudFront - the origin is the source location for content that will be cached by CloudFont. The content will be cached in the edge location. Distribution - configuration unit/block in CloudFront
+
+Lambda@Edge - basically just having Azure Functions at an edge location for CloudFront. Don't worry about this. 
+Global Accelerator - like CloudFront but your user is routed to the AWS backbone as quickly as possible so they can access applications in the AWS ecosystem faster. Not the same as caching at the edge. 
+AWS Route 53 - managed DNS service. You can actually purchase domains here as well. You have your DNS records in your `hosted zoned`. Then you get 4 AWS DNS servers for that hosted zone that will take care of your DNS requests. 
 
 11/18/2026
 
