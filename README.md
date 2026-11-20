@@ -2,7 +2,29 @@
 
 11/19/2026
 
-Storage:
+Compute:
+
+AMI - Amazon Machine Image. Autoscaling groups - new EC2 instances will be deployed if your traffic increases. 
+Cluster Placement Groups - when AWS places your servers in the same physicaly data center rack as one another for the lowest latency. You can also have Partition Placement Groups and Spread Placement Groups for memory and disaster recovery. 
+Elastic Network Interface (ENI) - just remember you can detach these from EC2s just like in Azure. The primary ENI is always fixed to an EC2 instance though. It's the default one that's deployed to the VM. The secondary ENI can be detached. You can also attach SGs to the ENI as well. 
+
+Elastic Beanstalk - this is like a PaaS. It handles all of the infrastructure deployment (VMs, networking, EC2s, storage, autoscaling, etc) so you can just upload your web application. It supports a bunch of different runtimes like Docker and PHP. 
+AWS Elastic Beanstalk - Azure App Service
+
+AWS Lightsail - this is like the EC2 instance launch wizard but even easier. Its the easiest way to spin up a VM for your application and have low billing for it. We'll never use this but it's here. Think of this when you don't want to deal with AWS networking which (I ain't scared of that shit). 
+
+Elastic Container Services - handles deploying the container, monitoring, and container networking. Remember, this is specific to AWS so migrating efforts will be more difficult. Reasons why you may want to use EKS. 
+- Tasks - so you'll create a Dockerfile and upload it to your repo. You then tell ECS what image you want to use and what configurations you need for your container. It's the blueprint that describes how containers should launch. It asks how much CPU/MEM and which images, ports, and volumes to attach to it. It's like a running container and that you're defining. You create the Task Definition which then becomes the Task. The Task is the running container. Task = container. Task Definition - the blueprint.
+
+- ECS Services - ensures that a certain number of Tasks are running at all times. We tell the service how many instances of that task (container or Pod) that we want running. Think of this as the HPA. It restarts containers that have exited/crashed. It can also restart a task on a different EC2 instance if the initial VM failed.
+- If you update your image and want to push that to your tasks and your ECS service, go to your Service and press Update. It should have a Force new deployment option. Check that box. Or, if you make a new Task definition, you'll have a new revision number. Make sure you update your service with the new revision number. The Task definition will stay the same here but you should have a drop down with the new revision number.
+
+Elastic Kubernetes Services - basically AWS just manages the control plane (API Server, Scheduler, Controller Manager, etcd) but you have to handle the worker nodes. You have 3 options for worker nodes: Self-managed nodes (you manually deploy the EC2 instances), managed node group (AWS deploys the EC2 instances for you), and Fargate (AWS handles all compute for you). 
+
+App Runner - you can just upload your code AWS will do the rest to make your application run. Think of you handing AWS a container though. You give AWS the container and it runs it for you. 
+
+AWS Batch - when you have jobs or tasks of different sizes and times that need to be run. You can just give Batch a literal batch of jobs and AWS handles the underlying compute to make it happen. 
+
 
 
 Networking:
