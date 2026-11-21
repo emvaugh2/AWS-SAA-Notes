@@ -1,4 +1,18 @@
 
+11/20/2026
+
+Storage:
+Elastic Block Storage - both mountable and bootable. 
+- They're separate from the EC2 instance so you can detach them.
+- They're resilient within an AZ. Have to be in the same AZ as your EC2 instance too.
+- To move storage from one AZ to another, create a snapshot (this should be in the actions dropdown list of the volume) (Create volume from snapshot) and then move it to a different region.
+
+Instance Store Volumes - this is temporary storage for you EC2. It's a physical disk on the machine so if the EC2 is deleted, then you're smoked. 
+Elastic File System (EFS) Storage - Uses NFSv4. You deploy EFS into subnets and they become Target Mounts. The EC2s can send data to these Target Mounts (the mounts are just an IP address in that specific subnet). 
+- You need to use `dnf install amazon-efs-utils` to work with EFS from the CLI.
+
+S3 is like Dropbox or Google Drive. Bucket - folder/directory. Objects go in the bucket. Objects are just files (any type of file. Audio, Vido, text, ANYTHING). The Key is the file name and the Value is the file data. Each object has these things. 
+Versioning - you enable this on the bucket and it applies to all objects in the bucket. But this is for backups and making sure you don't overwrite files. When you upload a file, you get a version ID. If you upload the same file (or at least same Key), the new file will get a different version ID. That's it. 
 
 11/19/2026
 
