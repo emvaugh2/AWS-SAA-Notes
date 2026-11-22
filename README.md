@@ -1,5 +1,10 @@
 11/21/2026
 
+Security:
+
+Cognito - offers authentication at the APPLICATION layer. Think YouTube and stuff, not AWS resources. 
+Directory Service - AWS's version of Microsoft's Active Directory. Just on AWS. You can actually link this with your on-prem AD. 
+Verified Permissions - what the hell is this used for? Just ask AI. This was confusing. 
 
 
 11/20/2026
