@@ -5,6 +5,20 @@ Security:
 Cognito - offers authentication at the APPLICATION layer. Think YouTube and stuff, not AWS resources. 
 Directory Service - AWS's version of Microsoft's Active Directory. Just on AWS. You can actually link this with your on-prem AD. 
 Verified Permissions - what the hell is this used for? Just ask AI. This was confusing. 
+Security Lake - collects logs from all sources in the cloud and on-prem so you can have them all in one location. They're stored in an S3 bucket. Then you can use other AWS services to run queries against it. 
+WAF (web application firewall) - they use WebACLs in AWS to create rules. Remember, this is all L7. 
+Shield and Shield Advanced - it protects your AWS service from DDoS attacks. Probably will never use this. 
+Network Firewall - you have to deploy endpoints in the subnets. But yeah it's like, NGFW just in AWS. Has it's own firewall subnet as well. Must configure the route table for this as well. 
+Firewall Manager - used to manage firewalls across different ACCOUNTS. Basically the FMC for AWS. 
+
+Config - it allows you to traffic the configurations of your services in AWS. Good for security and compliance policies. Also good for auditing. (Use Terraform instead of this. It tracks drifting but forget this ish). Also gives you pre-config rules to help you out.
+Artifacts - you can see services that are compliant and download the reports on it. Basically this is for audit reports. You can just download them. Think giving this information to the government or a client. 
+Inspector - automatically scans workloads for vulnerabilities (EC2, ECS, and Lambda). Finds Package, Code, and Network vulnerabilities. 
+Macie - this is for Personal Identifiable Information (PII) (think credit cards, SSN, etc). Macie scans your S3 buckets to make sure it doesn't contain this type of info and alerts you. 
+Security Hub - this is also a centralized dashboard of your security findings. It also does compliance checks. 
+KMS (Key Management Services) - manages the encryption keys between your services. Rotation, deletion, etc. 
+CloudHSM - 
+
 
 
 11/20/2026
