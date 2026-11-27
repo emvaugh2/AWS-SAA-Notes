@@ -1,3 +1,23 @@
+11/25/2026
+
+Security:
+CloudHSM (Cloud Hardware Security Module) - all the keys are stored in the HSM on the device and they never leave the device. Basically a centralized key management on your actual computer. AWS hosts the HSM in the cloud though. You can install the HSM client on your devices. 
+Certificate Manager - this passes the certificates in the Private Certificate Authority to your services. Its like a literal server. It serves the certificates. These are for certificates that will be used for the internet. 
+Private Certificate Authority - think of this like the root CA. The Certificate Manager interacts with it to hand certificates to the servers. These are for tickets that will be used internally (private). 
+Secrets Manager - basically the same as Azure Key Vault. 
+
+CloudTrail - it's an auditing system for APIs so it can track what users are doing. You can store the audits in S3 or CloudWatch. 
+
+GuardDuty - uses AI and ML to analyze logs for security threats. It looks for suspicious activity. It gives the event a severity score as well. You can also give GuardDuty a trusted IP list (whitelist) and a threat IP list. 
+
+IAM - this is all authentication and authorization. 
+- Each person in your organization, you have to create an IAM User for them and assign them access.
+- Groups are like users. Just, a group of them.
+- The policy tells each IAM User what they'll have access to. Here's the format. 1.) You have your action which is Allow or Deny. 2.) You have what your allowed (or denied) to do. So think read or list an S3 bucket or write to an EC2 instance. It's the explicit definition of WHAT you're allowed to do. 3.) Finally, this says WHAT RESOURCE you're allowed to perform (or denied action) against. So think the actual resource (ARN which is the same thing as an Azure ID) or least of devices.
+- Roles - this is when a user or resource needs temporary access (basically temp elevated permissions) to perform an operations. Remember, you can apply this to resources like EC2 instances too. So 1.) create the role. 2.) Create the policy (Allow, what action, on which resource) for the role and attach it to the role. 3.) Attach the role to the user or resource (Service: STS, Actions: AssumeRole, Resources: <insert-name-of-the-role-you-created>). Then, for your specific resource (lets say the EC2 instance), find your resource and click the dropdown button in whatever it's regular window is in (so not the IAM page). Click Security > Modify IAM role.
+
+IAM Identity Center (SSO) - it's SSO so you can have your IAM user access across different AWS accounts (think management groups and subscriptions in Azure and having SSO across all of them). 
+
 11/21/2026
 
 Security:
